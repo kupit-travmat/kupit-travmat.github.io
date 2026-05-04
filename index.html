@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Анонимный магазин оружия без документов. Купить пневматику, травмат, СХП, боевое через Telegram. Оплата криптой, доставка без паспорта и лицензии. Контрольный отстрел, маскировка груза.">
+  <title>DarkTactical — оружие без документов: купить через Telegram анонимно</title>
+  <link rel="canonical" href="https://darktactical.store/">
+  <style>
+    /* ===== СБРОС И ПЕРЕМЕННЫЕ ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      /* светлая песочная тема (по умолчанию) */
+      --bg: #faf7f2;
+      --surface: #ffffff;
+      --surface-hover: #f0eae0;
+      --text: #2c2416;
+      --text-secondary: #5c5340;
+      --accent: #b85c38;
+      --accent-dark: #8b4513;
+      --border: #d6cdbc;
+      --shadow: 0 4px 20px rgba(0,0,0,0.06);
+      --hero-bg: #f0e6d8;
+      --card-bg: #ffffff;
+      --timer-color: #c0392b;
+      --button-text: #fff;
+      --header-bg: rgba(250,247,242,0.95);
+      --menu-link: #2c2416;
+      --cta-gradient: linear-gradient(135deg, #b85c38 0%, #8b4513 100%);
+      --toggle-icon: '🌙';
+    }
+
+    body.dark {
+      --bg: #121418;
+      --surface: #1e2127;
+      --surface-hover: #2a2d34;
+      --text: #e0e0e0;
+      --text-secondary: #a0a0a0;
+      --accent: #d28b62;
+      --accent-dark: #b85c38;
+      --border: #3a3d42;
+      --shadow: 0 4px 20px rgba(0,0,0,0.5);
+      --hero-bg: #1a1c22;
+      --card-bg: #1e2127;
+      --timer-color: #ff6b6b;
+      --button-text: #ffffff;
+      --header-bg: rgba(18,20,24,0.95);
+      --menu-link: #e0e0e0;
+      --cta-gradient: linear-gradient(135deg, #d28b62 0%, #b85c38 100%);
+      --toggle-icon: '☀️';
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== ШАПКА ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--header-bg);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--accent-dark);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--menu-link);
+      font-weight: 500;
+      padding: 12px 15px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+      font-size: 1rem;
+      min-width: 48px;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+    }
+    .nav-links a:hover {
+      background: var(--surface-hover);
+      color: var(--accent);
+    }
+    .theme-toggle {
+      background: none;
+      border: 2px solid var(--border);
+      font-size: 1.4rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      transition: background 0.2s;
+    }
+    .theme-toggle:hover {
+      background: var(--surface-hover);
+    }
+
+    /* ===== ГЕРОЙ ===== */
+    .hero {
+      background: var(--hero-bg);
+      padding: 80px 0 60px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 60px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: var(--text-secondary);
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--cta-gradient);
+      color: var(--button-text);
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: 18px 42px;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      border: none;
+      cursor: pointer;
+      min-height: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    }
+    .timer {
+      margin-top: 25px;
+      font-weight: 600;
+      color: var(--timer-color);
+      background: var(--surface);
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-size: 1rem;
+      border: 1px solid var(--border);
+    }
+
+    /* ===== КАТАЛОГ ===== */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: var(--accent-dark);
+      text-align: center;
+    }
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-bottom: 70px;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+    }
+    .product-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+    .product-card .subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .model-list {
+      list-style: none;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .model-list li {
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.95rem;
+    }
+    .model-list li:last-child {
+      border-bottom: none;
+    }
+    .price {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .card-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      padding: 14px 0;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: background 0.2s;
+      border: none;
+      cursor: pointer;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-cta:hover {
+      background: var(--accent-dark);
+    }
+
+    /* СХП акцент */
+    .product-card.featured-cx {
+      border: 2px solid var(--accent);
+      position: relative;
+    }
+    .product-card.featured-cx::before {
+      content: "⭐ ПОПУЛЯРНЫЙ ВЫБОР";
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== КАК КУПИТЬ ===== */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      counter-reset: step;
+      margin-bottom: 70px;
+    }
+    .step {
+      flex: 1 1 200px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 30px 20px 20px;
+      position: relative;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      counter-increment: step;
+    }
+    .step::before {
+      content: counter(step);
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      background: var(--accent);
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step strong {
+      display: block;
+      margin: 10px 0 8px;
+      font-size: 1.1rem;
+      color: var(--accent-dark);
+    }
+
+    /* ===== ГАРАНТИИ ===== */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+      margin-bottom: 70px;
+    }
+    .trust-item {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .trust-item h4 {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    /* ===== ОТЗЫВЫ ===== */
+    .reviews {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 70px;
+    }
+    .review {
+      flex: 1 1 300px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .review-text {
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+    .review-author {
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .review-date {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* ===== FAQ ===== */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto 70px;
+    }
+    .faq-item {
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+    .faq-item h4 {
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    /* ===== ФУТЕР ===== */
+    .site-footer {
+      text-align: center;
+      padding: 30px 0;
+      border-top: 2px solid var(--accent);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .footer-cta {
+      margin: 25px 0;
+    }
+
+    /* ===== АДАПТИВНОСТЬ ===== */
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .nav-links a {
+        padding: 12px 10px;
+        font-size: 0.95rem;
+      }
+      .hero {
+        padding: 40px 0 30px;
+      }
+      .cta-button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* микроразметка скрыта */
+    .schema-hidden { display: none; }
+  </style>
+</head>
+<body>
+  <!-- МИКРОРАЗМЕТКА Organization -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "DarkTactical",
+      "url": "https://darktactical.store/",
+      "logo": "https://darktactical.store/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+0-000-000-0000",
+        "contactType": "customer service",
+        "availableLanguage": ["Russian"]
+      },
+      "sameAs": ["https://t.me/DarkTacticalBot"]
+    }
+  </script>
+  <!-- WebSite разметка -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "DarkTactical",
+      "url": "https://darktactical.store/",
+      "description": "Анонимный онлайн-магазин оружия без документов.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://darktactical.store/#catalog?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
+
+  <!-- ШАПКА -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#hero" class="logo">DarkTactical</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#catalog">Каталог</a></li>
+          <li><a href="#howto">Как купить</a></li>
+          <li><a href="#trust">Гарантии</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ГЕРОЙ -->
+    <section id="hero" class="hero">
+      <div class="container">
+        <h1>Оружие без документов<br>прямо в Telegram</h1>
+        <p>Пневматика, травматика, СХП, боевое. Оплата криптой — ты остаёшься невидимым. Доставка без паспорта, лицензии и РОХа. Шифрование сделки на каждом шагу.</p>
+        <a href="https://t.me/DarkTacticalBot" target="_blank" class="cta-button">🚀 ОТКРЫТЬ БОТА @DarkTacticalBot</a>
+        <div class="timer" id="deadline">⚡ Скидка 12% действует ещё: 03:14:07</div>
+      </div>
+    </section>
+
+    <!-- КАТАЛОГ (4 категории, акцент на СХП) -->
+    <section id="catalog" class="container">
+      <h2 class="section-title">📦 ЧТО ВЫ МОЖЕТЕ КУПИТЬ</h2>
+      <div class="catalog-grid">
+        <!-- Пневматика -->
+        <div class="product-card" itemscope itemtype="https://schema.org/Product">
+          <h3 itemprop="name">Пневматическое оружие</h3>
+          <p class="subtitle">От 7.5 Дж до мощных винтовок — без паспорта</p>
+          <ul class="model-list">
+            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Hatsan 125 Sniper .22</span> <span class="price" itemprop="price" content="340">340 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
+            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">МР-654К 4.5 мм</span> <span class="price" itemprop="price" content="210">210 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
+            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">EDgun Leshiy 2</span> <span class="price" itemprop="price" content="1890">1890 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
+          </ul>
+          <a href="https://t.me/DarkTacticalBot" target="_blank" class="card-cta">Запросить в боте</a>
+        </div>
+
+        <!-- Травматика -->
+        <div class="product-card" itemscope itemtype="https://schema.org/Product">
+          <h3 itemprop="name">Травматическое оружие</h3>
+          <p class="subtitle">Огнестрельное ограниченного поражения — без лицензии</p>
+          <ul class="model-list">
+            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Grand Power T12FM 9 мм РА</span> <span class="price" itemprop="price" content="780">780 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
+            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Р-2 «Кобальт»</span> <span class="price" itemprop="price" content="550">550 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
+            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Сайга-ТГ2</span> <span class="price" itemprop="price" content="2400">2400 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
+          </ul>
+          <a href="https://t.me/DarkTacticalBot" target="_blank" class="card-cta">Запросить в боте</a>
+        </div>
+
+        <!-- СХП (акцентная карточка) -->
+        <div class="product-card featured-cx" itemscope itemtype="https://schema.org/Product">
+          <h3 itemprop="name">СХП (гладкоствольное)</h3>
+          <p class="subtitle">Служебно-охотничье — без РОХа и билета</p>
+          <ul class="model-list">
+            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Вепрь-12 Молот 12/76</span> <span class="price" itemprop="price" content="3100">3100 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
+            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Сайга-12К</span> <span class="price" itemprop="price" content="2800">2800 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
+            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">МР-155</span> <span class="price" itemprop="price" content="1600">1600 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
+          </ul>
+          <a href="https://t.me/DarkTacticalBot" target="_blank" class="card-cta">Запросить в боте</a>
+        </div>
+
+        <!-- Боевое (ограниченная категория) -->
+        <div class="product-card" itemscope itemtype="https://schema.org/Product">
+          <h3 itemprop="name">Боевое оружие</h3>
+          <p class="subtitle">Только для верифицированных клиентов</p>
+          <ul class="model-list">
+            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Glock 19 9×19</span> <span class="price" itemprop="price" content="3800">3800 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
+            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">АК-103 7.62×39</span> <span class="price" itemprop="price" content="7200">7200 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
+          </ul>
+          <a href="https://t.me/DarkTacticalBot" target="_blank" class="card-cta">Пройти верификацию</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- КАК КУПИТЬ -->
+    <section id="howto" class="container">
+      <h2 class="section-title">🧅 КАК ПОЛУЧИТЬ ЗАКАЗ АНОНИМНО</h2>
+      <div class="steps">
+        <div class="step">
+          <strong>1. Переходите в бот</strong>
+          Открываете @DarkTacticalBot, нажимаете «Начать сеанс». Всё общение шифруется, сеанс одноразовый.
+        </div>
+        <div class="step">
+          <strong>2. Формируете запрос</strong>
+          Указываете модель, калибр, количество. Никаких паспортных данных — только ник в Telegram и город доставки.
+        </div>
+        <div class="step">
+          <strong>3. Оплачиваете криптой</strong>
+          Принимаем BTC, USDT (TRC-20) и Monero (XMR) для абсолютной анонимности. Смарт-контракт выставляется разово.
+        </div>
+        <div class="step">
+          <strong>4. Мы маскируем груз</strong>
+          Ствол упаковывается в корпус бытовой техники или в чехол для инструментов. Отправка транспортной компанией без описи.
+        </div>
+        <div class="step">
+          <strong>5. Забираете по кодовому слову</strong>
+          Вы получаете трек-номер (только номер заказа), в пункте выдачи называете кодовое слово. Никаких удостоверений личности.
+        </div>
+      </div>
+    </section>
+
+    <!-- ГАРАНТИИ / ПОЧЕМУ МЫ -->
+    <section id="trust" class="container">
+      <h2 class="section-title">🛡 ПОЧЕМУ НАМ ДОВЕРЯЮТ С 2018</h2>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <h4>Безупречная репутация</h4>
+          <p>Более 3400 успешных отправлений. 98% клиентов возвращаются и приводят друзей. Работаем с 2018 года без единой утечки.</p>
+        </div>
+        <div class="trust-item">
+          <h4>Техническая анонимность</h4>
+          <p>Не храним историю заказов, базы данных отсутствуют. После выполнения сделки переписка безвозвратно удаляется с серверов.</p>
+        </div>
+        <div class="trust-item">
+          <h4>Контрольный отстрел</h4>
+          <p>Каждый ствол перед отправкой проходит проверку в тире. Видео процесса присылаем прямо в бот, чтобы вы убедились в работоспособности.</p>
+        </div>
+        <div class="trust-item">
+          <h4>Гарантия в тени</h4>
+          <p>Если товар пришёл с заводским дефектом, произведём замену или возврат без лишних вопросов в течение 7 дней. Без полиции и бумаг.</p>
+        </div>
+        <div class="trust-item">
+          <h4>Шифрование и крипта</h4>
+          <p>Платёж через Monero делает транзакцию полностью неотслеживаемой. Для других валют используем промежуточные кошельки без привязки к личности.</p>
+        </div>
+        <div class="trust-item">
+          <h4>География доставки</h4>
+          <p>Отправляем в города РФ, Беларуси, Казахстана. Срок доставки 3–10 дней в зависимости от региона, без таможенного оформления.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ОТЗЫВЫ (6 штук) -->
+    <section id="reviews" class="container">
+      <h2 class="section-title">💬 ЧТО ГОВОРЯТ НАШИ КЛИЕНТЫ</h2>
+      <div class="reviews">
+        <div class="review">
+          <p class="review-text">«Заказывал Glock 19, оплатил Monero. Приехал за 5 дней в корпусе от старого пылесоса. Даже жена не догадалась. Теперь сплю спокойно.»</p>
+          <p class="review-author">@steel_rat</p>
+          <p class="review-date">15 марта 2025</p>
+        </div>
+        <div class="review">
+          <p class="review-text">«Пневматика Hatsan 125 — отличная замена огнестрелу для развлекательной стрельбы. Паспорт не спрашивали, цена более чем демократичная.»</p>
+          <p class="review-author">@taiga_fox</p>
+          <p class="review-date">2 февраля 2025</p>
+        </div>
+        <div class="review">
+          <p class="review-text">«Брал Сайгу-12К для самообороны. Без лишних формальностей, контрольный отстрел скинули через час после запроса. Полный восторг.»</p>
+          <p class="review-author">@darkwood_cust</p>
+          <p class="review-date">20 января 2025</p>
+        </div>
+        <div class="review">
+          <p class="review-text">«Травмат Grand Power T12FM пришёл в идеальном состоянии. Никто из транспортной не догадался о содержимом. Скорость доставки поразила.»</p>
+          <p class="review-author">@urban_coyote</p>
+          <p class="review-date">11 декабря 2024</p>
+        </div>
+        <div class="review">
+          <p class="review-text">«Очень переживал за анонимность, но всё чисто. Переписывались в секретном чате, удалили историю сразу. Теперь только к вам.»</p>
+          <p class="review-author">@phantom_smoke</p>
+          <p class="review-date">3 ноября 2024</p>
+        </div>
+        <div class="review">
+          <p class="review-text">«Ружьё Вепрь-12 для охоты — мощная вещь. Оформление заняло 10 минут в Telegram, и через 7 дней я уже был в лесу. Очень доволен.»</p>
+          <p class="review-author">@bear_hunter</p>
+          <p class="review-date">5 октября 2024</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (усиленная экспертность) -->
+    <section id="faq" class="container">
+      <h2 class="section-title">❓ ЧАСТЫЕ ВОПРОСЫ: БЕЗ ДОКУМЕНТОВ, ЛИЦЕНЗИЙ И ПАСПОРТА</h2>
+      <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h4 itemprop="name">Можно ли купить пневматическое оружие без паспорта?</h4>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Да, пневматика до 7,5 Дж в России не требует никаких документов. Мы продаём и более мощные модели, не спрашивая паспорт, потому что наша доставка обходит официальный контроль.</p>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h4 itemprop="name">Нужна ли лицензия на травматический пистолет?</h4>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Обычно да, но в нашем магазине вы покупаете его без лицензии. Мы не передаём данные покупателя третьим лицам и не регистрируем сделку. Доставка осуществляется как «товар народного потребления».</p>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h4 itemprop="name">Что такое СХП и можно ли его приобрести без охотничьего билета?</h4>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">СХП — служебно-охотничье гладкоствольное оружие. Оно требует оформления РОХа и охотничьего билета в обычных магазинах. Мы даём возможность купить его без документов, просто выбрав модель в боте.</p>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h4 itemprop="name">Реально ли купить боевое оружие анонимно?</h4>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Да, категория доступна после дополнительной верификации в боте. Мы гарантируем, что ствол не числится в розыске, контрольный отстрел проведён, а ваше имя никогда не появится в базах.</p>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h4 itemprop="name">Как узнать цену и наличие?</h4>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Актуальный прайс всегда доступен в Telegram-боте @DarkTacticalBot. На сайте указаны ориентировочные цены в USDT, окончательная стоимость может незначительно меняться в зависимости от курса криптовалюты.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-cta">
+        <a href="https://t.me/DarkTacticalBot" target="_blank" class="cta-button">⚡ СВЯЗАТЬСЯ С ОПЕРАТОРОМ В TELEGRAM</a>
+      </div>
+      <p>DarkTactical — демонстрационный лендинг. Все совпадения случайны. Оружие без документов является художественным допущением.<br>
+      Строка-источник случайности: X9tR4mN2pQ8zL5yW1vB6cF0dE3</p>
+    </div>
+  </footer>
+
+  <script>
+    // Переключение темы (дефолт светлая, сохранение)
+    (function() {
+      const toggle = document.getElementById('themeToggle');
+      const body = document.body;
+      // Устанавливаем иконку и тему из localStorage
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') {
+        body.classList.add('dark');
+        toggle.textContent = '☀️';
+      } else {
+        toggle.textContent = '🌙';
+      }
+      toggle.addEventListener('click', function() {
+        body.classList.toggle('dark');
+        if (body.classList.contains('dark')) {
+          localStorage.setItem('theme', 'dark');
+          toggle.textContent = '☀️';
+        } else {
+          localStorage.setItem('theme', 'light');
+          toggle.textContent = '🌙';
+        }
+      });
+    })();
+
+    // Таймер скидки до конца дня (UTC+3)
+    function updateTimer() {
+      const now = new Date();
+      const end = new Date(now);
+      end.setHours(23, 59, 59, 999);
+      const diff = end - now;
+      const deadlineEl = document.getElementById('deadline');
+      if (diff <= 0) {
+        deadlineEl.textContent = '🔥 Скидка 12% продлена на следующие сутки!';
+        return;
+      }
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      deadlineEl.textContent = 
+        `⚡ Скидка 12% действует ещё: ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+</html>
