@@ -1,738 +1,903 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Анонимный магазин оружия без документов. Купить пневматику, травмат, СХП, боевое через Telegram. Оплата криптой, доставка без паспорта и лицензии. Контрольный отстрел, маскировка груза.">
-  <title>DarkTactical — оружие без документов: купить через Telegram анонимно</title>
-  <link rel="canonical" href="https://darktactical.store/">
-  <style>
-    /* ===== СБРОС И ПЕРЕМЕННЫЕ ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      /* светлая песочная тема (по умолчанию) */
-      --bg: #faf7f2;
-      --surface: #ffffff;
-      --surface-hover: #f0eae0;
-      --text: #2c2416;
-      --text-secondary: #5c5340;
-      --accent: #b85c38;
-      --accent-dark: #8b4513;
-      --border: #d6cdbc;
-      --shadow: 0 4px 20px rgba(0,0,0,0.06);
-      --hero-bg: #f0e6d8;
-      --card-bg: #ffffff;
-      --timer-color: #c0392b;
-      --button-text: #fff;
-      --header-bg: rgba(250,247,242,0.95);
-      --menu-link: #2c2416;
-      --cta-gradient: linear-gradient(135deg, #b85c38 0%, #8b4513 100%);
-      --toggle-icon: '🌙';
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Купить травматическое оружие без лицензии, без документов и бумаг | БУНКЕР — продажа и доставка по России</title>
+<meta name="description" content="Купить травматическое оружие без лицензии, без документов и без бумаг в магазине БУНКЕР. Продажа травматов, охолощенного оружия. Доставка СДЭК, Почта России. Самовывоз в Москве у м. Сокол. Консультация 24/7.">
+<meta name="keywords" content="купить травматическое оружие без лицензии, травмат без документов, купить травмат без бумаг, травматический пистолет без лицензии, купить оружие без оформления, охолощенное оружие, БУНКЕР, доставка по России, Москва">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kupit-travmaticheskoe-boevoe.github.io/">
 
-    body.dark {
-      --bg: #121418;
-      --surface: #1e2127;
-      --surface-hover: #2a2d34;
-      --text: #e0e0e0;
-      --text-secondary: #a0a0a0;
-      --accent: #d28b62;
-      --accent-dark: #b85c38;
-      --border: #3a3d42;
-      --shadow: 0 4px 20px rgba(0,0,0,0.5);
-      --hero-bg: #1a1c22;
-      --card-bg: #1e2127;
-      --timer-color: #ff6b6b;
-      --button-text: #ffffff;
-      --header-bg: rgba(18,20,24,0.95);
-      --menu-link: #e0e0e0;
-      --cta-gradient: linear-gradient(135deg, #d28b62 0%, #b85c38 100%);
-      --toggle-icon: '☀️';
-    }
+<!-- Open Graph -->
+<meta property="og:title" content="Купить травматическое оружие без лицензии и документов | БУНКЕР">
+<meta property="og:description" content="Продажа травматического и охолощенного оружия без лицензии, без бумаг и бюрократии. Доставка по РФ. Самовывоз в Москве.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      transition: background 0.3s, color 0.3s;
-      scroll-behavior: smooth;
-    }
+<!-- Микроразметка Schema.org для Яндекса -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "БУНКЕР",
+  "description": "Продажа травматического оружия без лицензии и документов. Быстрое оформление, доставка по России.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Москва",
+    "streetAddress": "Ленинградский проспект, д. 75, к. 1А"
+  },
+  "openingHours": "Mo-Su 09:00-20:00",
+  "url": "https://kupit-travmaticheskoe-boevoe.github.io/"
+}
+</script>
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0b0d;
+    --dark: #111318;
+    --panel: #161a1f;
+    --border: #2a3040;
+    --accent: #c8a84b;
+    --accent2: #e8c96a;
+    --green: #4caf6e;
+    --red: #c0392b;
+    --text: #cfd4dc;
+    --muted: #7a8494;
+    --white: #f0f2f5;
+  }
 
-    /* ===== ШАПКА ===== */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--header-bg);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 0;
-    }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 1.6rem;
-      color: var(--accent-dark);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--menu-link);
-      font-weight: 500;
-      padding: 12px 15px;
-      border-radius: 8px;
-      transition: background 0.2s, color 0.2s;
-      font-size: 1rem;
-      min-width: 48px;
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-    }
-    .nav-links a:hover {
-      background: var(--surface-hover);
-      color: var(--accent);
-    }
-    .theme-toggle {
-      background: none;
-      border: 2px solid var(--border);
-      font-size: 1.4rem;
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--surface);
-      transition: background 0.2s;
-    }
-    .theme-toggle:hover {
-      background: var(--surface-hover);
-    }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* ===== ГЕРОЙ ===== */
-    .hero {
-      background: var(--hero-bg);
-      padding: 80px 0 60px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 60px;
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 6vw, 3.2rem);
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      color: var(--text);
-    }
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 30px;
-      color: var(--text-secondary);
-    }
-    .cta-button {
-      display: inline-block;
-      background: var(--cta-gradient);
-      color: var(--button-text);
-      font-weight: 700;
-      font-size: 1.2rem;
-      padding: 18px 42px;
-      border-radius: 60px;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-      border: none;
-      cursor: pointer;
-      min-height: 60px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-    }
-    .timer {
-      margin-top: 25px;
-      font-weight: 600;
-      color: var(--timer-color);
-      background: var(--surface);
-      display: inline-block;
-      padding: 10px 24px;
-      border-radius: 40px;
-      font-size: 1rem;
-      border: 1px solid var(--border);
-    }
+  html { scroll-behavior: smooth; font-size: 16px; }
 
-    /* ===== КАТАЛОГ ===== */
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 30px;
-      color: var(--accent-dark);
-      text-align: center;
-    }
-    .catalog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-      margin-bottom: 70px;
-    }
-    .product-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 30px 20px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-    }
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 32px rgba(0,0,0,0.12);
-    }
-    .product-card h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--accent);
-    }
-    .product-card .subtitle {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
-    .model-list {
-      list-style: none;
-      margin-bottom: 20px;
-      flex-grow: 1;
-    }
-    .model-list li {
-      padding: 10px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px dashed var(--border);
-      font-size: 0.95rem;
-    }
-    .model-list li:last-child {
-      border-bottom: none;
-    }
-    .price {
-      font-weight: 700;
-      color: var(--accent);
-    }
-    .card-cta {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      text-align: center;
-      padding: 14px 0;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 600;
-      margin-top: 10px;
-      transition: background 0.2s;
-      border: none;
-      cursor: pointer;
-      min-height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .card-cta:hover {
-      background: var(--accent-dark);
-    }
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: default;
+    line-height: 1.6;
+  }
 
-    /* СХП акцент */
-    .product-card.featured-cx {
-      border: 2px solid var(--accent);
-      position: relative;
-    }
-    .product-card.featured-cx::before {
-      content: "⭐ ПОПУЛЯРНЫЙ ВЫБОР";
-      position: absolute;
-      top: -12px;
-      left: 20px;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 4px 14px;
-      border-radius: 20px;
-      letter-spacing: 0.5px;
-    }
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
 
-    /* ===== КАК КУПИТЬ ===== */
-    .steps {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      counter-reset: step;
-      margin-bottom: 70px;
-    }
-    .step {
-      flex: 1 1 200px;
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 30px 20px 20px;
-      position: relative;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      counter-increment: step;
-    }
-    .step::before {
-      content: counter(step);
-      position: absolute;
-      top: -15px;
-      left: 20px;
-      background: var(--accent);
-      color: #fff;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .step strong {
-      display: block;
-      margin: 10px 0 8px;
-      font-size: 1.1rem;
-      color: var(--accent-dark);
-    }
+  /* ── TYPOGRAPHY HELPERS ── */
+  h1, h2, h3, h4 { line-height: 1.1; }
+  strong { color: var(--white); font-weight: 600; }
+  a { transition: color 0.2s ease; }
 
-    /* ===== ГАРАНТИИ ===== */
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 25px;
-      margin-bottom: 70px;
-    }
-    .trust-item {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 25px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-    .trust-item h4 {
-      color: var(--accent);
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 64px;
+    background: rgba(10,11,13,0.92); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 6px; color: var(--accent); text-decoration: none; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-phone { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 1px; color: var(--white); }
 
-    /* ===== ОТЗЫВЫ ===== */
-    .reviews {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 25px;
-      margin-bottom: 70px;
-    }
-    .review {
-      flex: 1 1 300px;
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 25px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-    .review-text {
-      font-style: italic;
-      margin-bottom: 15px;
-    }
-    .review-author {
-      font-weight: 600;
-      color: var(--accent);
-    }
-    .review-date {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: 100vh; display: flex; align-items: center;
+    overflow: hidden; padding-top: 64px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(200,168,75,0.07) 0%, transparent 60%),
+                linear-gradient(135deg, #0a0b0d 0%, #111822 50%, #0d1219 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(200,168,75,0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 0 40px; width: 100%; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 10px; font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .hero-tag::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 10vw, 130px); letter-spacing: 3px; color: var(--white); opacity: 0; animation: fadeUp 0.8s 0.35s forwards; line-height: 0.9; }
+  .hero-title span { color: var(--accent); display: block; font-size: clamp(40px, 6vw, 70px); }
+  .hero-sub { margin-top: 32px; font-size: 18px; font-weight: 300; color: var(--muted); max-width: 600px; line-height: 1.7; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; }
+  .hero-ctas { display: flex; gap: 16px; margin-top: 44px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s 0.65s forwards; }
+  .btn-primary {
+    font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 3px;
+    text-transform: uppercase; padding: 16px 40px; background: var(--accent); color: var(--black);
+    border: none; text-decoration: none; cursor: pointer; transition: background 0.2s, transform 0.15s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+  .btn-outline {
+    font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 3px;
+    text-transform: uppercase; padding: 16px 40px; background: transparent; color: var(--accent);
+    border: 1px solid var(--accent); text-decoration: none; cursor: pointer; transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-outline:hover { background: rgba(200,168,75,0.1); transform: translateY(-2px); }
+  .hero-stats { display: flex; gap: 48px; margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--border); opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 2px; color: var(--accent); line-height: 1; }
+  .stat-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .hero-badge { position: absolute; right: 40px; bottom: 80px; opacity: 0; animation: fadeUp 0.8s 1s forwards; }
+  .badge-ring { width: 160px; height: 160px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column; position: relative; animation: rotate 20s linear infinite; }
+  .badge-ring::before { content: 'КУПИТЬ · ТРАВМАТ · БЕЗ · ЛИЦЕНЗИИ · РФ · '; position: absolute; width: 100%; height: 100%; font-family: 'Oswald', sans-serif; font-size: 8px; letter-spacing: 3px; color: var(--muted); display: flex; align-items: center; justify-content: center; }
+  .badge-inner { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--accent); }
 
-    /* ===== FAQ ===== */
-    .faq-list {
-      max-width: 800px;
-      margin: 0 auto 70px;
-    }
-    .faq-item {
-      margin-bottom: 20px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 20px;
-    }
-    .faq-item h4 {
-      font-weight: 700;
-      color: var(--accent-dark);
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-    }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* ===== ФУТЕР ===== */
-    .site-footer {
-      text-align: center;
-      padding: 30px 0;
-      border-top: 2px solid var(--accent);
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-    .footer-cta {
-      margin: 25px 0;
-    }
+  /* ── SECTION LAYOUT ── */
+  section { padding: 100px 40px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-label { font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 5px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .section-label::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 6vw, 80px); letter-spacing: 3px; color: var(--white); margin-bottom: 48px; }
 
-    /* ===== АДАПТИВНОСТЬ ===== */
-    @media (max-width: 768px) {
-      .header-inner {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .nav-links {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-      .nav-links a {
-        padding: 12px 10px;
-        font-size: 0.95rem;
-      }
-      .hero {
-        padding: 40px 0 30px;
-      }
-      .cta-button {
-        width: 100%;
-        justify-content: center;
-      }
-    }
+  /* ── WHY-US / О НАС ── */
+  #why-us { background: var(--dark); position: relative; overflow: hidden; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .why-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(42px, 5vw, 64px); letter-spacing: 3px; color: var(--white); margin-bottom: 24px; }
+  .why-text .lead { font-size: 18px; color: var(--accent); margin-bottom: 24px; font-weight: 400; }
+  .why-text p { font-size: 16px; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+  .why-text p strong { color: var(--text); }
+  .why-features { display: grid; gap: 20px; }
+  .why-feature { background: var(--panel); border: 1px solid var(--border); padding: 28px; transition: border-color 0.2s; }
+  .why-feature:hover { border-color: rgba(200,168,75,0.4); }
+  .why-feature h4 { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .why-feature p { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
-    /* микроразметка скрыта */
-    .schema-hidden { display: none; }
-  </style>
+  /* ── NO-DOCS BLOCK ── */
+  #no-docs { background: var(--black); position: relative; overflow: hidden; }
+  .no-docs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; position: relative; z-index: 1; }
+  .no-docs-left { padding-right: 60px; display: flex; flex-direction: column; justify-content: center; }
+  .no-docs-left h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(42px, 5vw, 64px); letter-spacing: 3px; color: var(--white); line-height: 1; margin-bottom: 24px; position: relative; display: inline-block; }
+  .no-docs-left h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 60%; height: 2px; background: var(--accent); }
+  .no-docs-left .tagline { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  .no-docs-left .intro-text { font-size: 16px; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+  .no-docs-left .intro-text strong { color: var(--red); }
+  .no-docs-right { background: var(--panel); border: 1px solid var(--border); padding: 48px 36px; display: flex; flex-direction: column; gap: 24px; }
+  .risk-list { list-style: none; padding: 0; margin: 0 0 20px 0; }
+  .risk-list li { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; padding: 16px 20px; background: rgba(192,57,43,0.05); border-left: 2px solid var(--red); transition: background 0.2s; }
+  .risk-list li:hover { background: rgba(192,57,43,0.1); }
+  .risk-list .risk-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .risk-list .risk-title { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #e74c3c; margin-bottom: 4px; display: block; }
+  .risk-list .risk-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .advantages-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .adv-card { background: rgba(200,168,75,0.05); border: 1px solid rgba(200,168,75,0.15); padding: 20px; text-align: center; transition: border-color 0.2s; }
+  .adv-card:hover { border-color: var(--accent); }
+  .adv-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+  .adv-title { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .adv-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── FAST-TRACK ── */
+  .fast-track-section { margin-top: 64px; background: var(--panel); border: 1px solid var(--border); padding: 48px 40px; position: relative; overflow: hidden; }
+  .fast-track-section::before { content: 'FAST-TRACK'; position: absolute; top: -20px; right: -20px; font-family: 'Bebas Neue', sans-serif; font-size: 120px; letter-spacing: 10px; color: rgba(200,168,75,0.03); pointer-events: none; line-height: 1; }
+  .fast-track-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; z-index: 1; }
+  .fast-track-item { text-align: center; padding: 0 12px; }
+  .fast-track-num { width: 56px; height: 56px; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--accent); margin: 0 auto 16px; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
+  .fast-track-item h4 { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
+  .fast-track-item p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* ── HOW-IT-WORKS ── */
+  #how-it-works { background: var(--dark); }
+  .how-steps-detailed { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+  .how-step-detailed { background: var(--panel); border: 1px solid var(--border); padding: 36px 24px; text-align: center; transition: border-color 0.2s; }
+  .how-step-detailed:hover { border-color: rgba(200,168,75,0.4); }
+  .how-step-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: rgba(200,168,75,0.2); margin-bottom: 16px; }
+  .how-step-detailed h4 { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 12px; }
+  .how-step-detailed p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  /* ── LEGAL-INFO BLOCK ── */
+  #legal-info { background: var(--black); }
+  .legal-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .legal-info-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 2px; color: var(--white); margin-bottom: 24px; }
+  .legal-info-text p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+  .legal-info-faq { display: grid; gap: 16px; }
+  .faq-item { background: var(--panel); border: 1px solid var(--border); padding: 28px; }
+  .faq-item h4 { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .faq-item p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  /* ── PRICE ── */
+  #price { background: var(--dark); }
+  .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 1px solid var(--border); }
+  .price-col { background: var(--panel); padding: 0; }
+  .price-col-head { padding: 20px 28px; background: rgba(200,168,75,0.08); border-bottom: 1px solid var(--border); font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; }
+  .price-col-head .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+  .price-col-head .dot.trauma { background: #e67e22; }
+  .price-item { display: flex; align-items: center; gap: 14px; padding: 12px 28px; border-bottom: 1px solid rgba(42,48,64,0.5); transition: background 0.15s; }
+  .price-item:hover { background: rgba(200,168,75,0.05); }
+  .price-item:last-child { border-bottom: none; }
+  .price-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .price-dot.trauma { background: #e67e22; }
+  .price-dot.star { background: transparent; color: var(--accent); font-size: 14px; line-height: 1; }
+  .price-name { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 1.5px; color: var(--text); }
+  .price-name.featured { color: var(--accent); font-weight: 600; }
+  .price-note { margin-top: 24px; padding: 20px 24px; background: rgba(200,168,75,0.06); border-left: 3px solid var(--accent); font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* ── DELIVERY ── */
+  #delivery { background: var(--black); }
+  .delivery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 48px; }
+  .delivery-card { background: var(--panel); border: 1px solid var(--border); padding: 36px 28px; position: relative; overflow: hidden; transition: border-color 0.3s; }
+  .delivery-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .delivery-card:hover { border-color: rgba(200,168,75,0.3); }
+  .delivery-card:hover::after { transform: scaleX(1); }
+  .delivery-icon { font-size: 32px; margin-bottom: 20px; display: block; }
+  .delivery-name { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 10px; }
+  .delivery-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; margin: 48px 0; }
+  .steps-grid::before { content: ''; position: absolute; top: 30px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+  .step { text-align: center; padding: 0 16px; position: relative; z-index: 2; }
+  .step-num { width: 60px; height: 60px; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--accent); margin: 0 auto 20px; background: var(--black); clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
+  .step-title { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
+  .step-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .info-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 48px; }
+  .info-block { background: var(--panel); border: 1px solid var(--border); padding: 36px 32px; }
+  .info-block-title { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .info-block p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 12px; }
+  .info-block p:last-child { margin-bottom: 0; }
+  .warning-block { background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.3); border-left: 3px solid var(--red); padding: 20px 24px; margin-top: 24px; font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .warning-block strong { color: #e74c3c; }
+
+  /* ── REVIEWS ── */
+  #reviews { background: var(--dark); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .review-card { background: var(--panel); border: 1px solid var(--border); padding: 36px 28px; position: relative; transition: border-color 0.3s; }
+  .review-card:hover { border-color: rgba(200,168,75,0.3); }
+  .review-quote { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 0.6; color: rgba(200,168,75,0.15); margin-bottom: 20px; display: block; }
+  .review-text { font-size: 15px; line-height: 1.75; color: var(--text); font-weight: 300; font-style: italic; margin-bottom: 28px; }
+  .review-author { display: flex; align-items: center; gap: 14px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .review-avatar { width: 44px; height: 44px; background: rgba(200,168,75,0.15); border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--accent); flex-shrink: 0; clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px)); }
+  .review-name { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 1px; color: var(--white); }
+  .review-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .stars { color: var(--accent); font-size: 13px; letter-spacing: 2px; margin-bottom: 16px; }
+
+  /* ── CONTACTS ── */
+  #contacts { background: var(--black); }
+  .contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .contact-block { background: var(--panel); border: 1px solid var(--border); padding: 48px 40px; }
+  .contact-item { display: flex; gap: 20px; margin-bottom: 32px; align-items: flex-start; }
+  .contact-icon { font-size: 24px; margin-top: 2px; flex-shrink: 0; }
+  .contact-label { font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .contact-value { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 500; color: var(--white); letter-spacing: 1px; }
+  .contact-value a { color: var(--white); text-decoration: none; }
+  .contact-value a:hover { color: var(--accent); }
+  .map-placeholder { background: var(--panel); border: 1px solid var(--border); min-height: 360px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; position: relative; overflow: hidden; }
+  .map-placeholder::before { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, rgba(200,168,75,0.03) 25%, transparent 25%), linear-gradient(-45deg, rgba(200,168,75,0.03) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(200,168,75,0.03) 75%), linear-gradient(-45deg, transparent 75%, rgba(200,168,75,0.03) 75%); background-size: 20px 20px; }
+  .map-pin { font-size: 48px; position: relative; z-index: 1; }
+  .map-address { font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 400; letter-spacing: 2px; color: var(--accent); text-align: center; position: relative; z-index: 1; max-width: 300px; line-height: 1.5; }
+  .map-metro { font-size: 13px; color: var(--muted); position: relative; z-index: 1; }
+
+  /* ── LEGAL ── */
+  .legal-bar { background: var(--panel); border-top: 1px solid var(--border); padding: 40px; }
+  .legal-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+  .legal-text { font-size: 12px; color: var(--muted); line-height: 1.7; max-width: 700px; }
+  .legal-links { display: flex; gap: 20px; }
+  .legal-links a { font-size: 11px; letter-spacing: 1px; color: var(--muted); text-decoration: none; }
+  .legal-links a:hover { color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--black); border-top: 1px solid var(--border); padding: 32px 40px; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 6px; color: var(--accent); }
+  .footer-copy { font-size: 12px; color: var(--muted); }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 40px; }
+
+  /* ── FLOATING CTA ── */
+  .floating-cta { position: fixed; bottom: 32px; right: 32px; z-index: 200; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+  .fcta-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--accent); color: var(--black); font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); transition: background 0.2s; white-space: nowrap; }
+  .fcta-btn:hover { background: var(--accent2); }
+  .fcta-tg { background: #229ED9; color: #fff; }
+  .fcta-tg:hover { background: #1a8bc2; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .hero-content { padding: 0 20px; }
+    .hero-badge { display: none; }
+    .hero-stats { gap: 28px; flex-wrap: wrap; }
+    .why-grid, .no-docs-grid, .legal-info-grid { grid-template-columns: 1fr; }
+    .no-docs-left { padding-right: 0; margin-bottom: 32px; }
+    .price-grid, .delivery-grid, .reviews-grid, .contacts-grid, .info-blocks, .fast-track-grid, .how-steps-detailed { grid-template-columns: 1fr; }
+    .advantages-grid { grid-template-columns: 1fr 1fr; }
+    .steps-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .steps-grid::before { display: none; }
+    .legal-inner { flex-direction: column; }
+    .floating-cta { bottom: 16px; right: 16px; }
+    footer { padding: 24px 20px; }
+    .footer-inner { flex-direction: column; gap: 10px; }
+    .divider { margin: 0 20px; }
+    .legal-bar { padding: 32px 20px; }
+    .fast-track-section { padding: 32px 24px; }
+  }
+</style>
 </head>
 <body>
-  <!-- МИКРОРАЗМЕТКА Organization -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "DarkTactical",
-      "url": "https://darktactical.store/",
-      "logo": "https://darktactical.store/logo.png",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+0-000-000-0000",
-        "contactType": "customer service",
-        "availableLanguage": ["Russian"]
-      },
-      "sameAs": ["https://t.me/DarkTacticalBot"]
-    }
-  </script>
-  <!-- WebSite разметка -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "DarkTactical",
-      "url": "https://darktactical.store/",
-      "description": "Анонимный онлайн-магазин оружия без документов.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://darktactical.store/#catalog?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-  </script>
 
-  <!-- ШАПКА -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#hero" class="logo">DarkTactical</a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#catalog">Каталог</a></li>
-          <li><a href="#howto">Как купить</a></li>
-          <li><a href="#trust">Гарантии</a></li>
-          <li><a href="#reviews">Отзывы</a></li>
-          <li><a href="#faq">FAQ</a></li>
+<!-- NAV -->
+<nav>
+  <a href="tg://resolve?domain=Bunker24_7" class="nav-logo">БУНКЕР</a>
+  <ul class="nav-links">
+    <li><a href="tg://resolve?domain=Bunker24_7">Без документов</a></li>
+    <li><a href="tg://resolve?domain=Bunker24_7">О нас</a></li>
+    <li><a href="tg://resolve?domain=Bunker24_7">Как купить</a></li>
+    <li><a href="tg://resolve?domain=Bunker24_7">Прайс</a></li>
+    <li><a href="tg://resolve?domain=Bunker24_7">Доставка</a></li>
+    <li><a href="tg://resolve?domain=Bunker24_7">Отзывы</a></li>
+    <li><a href="tg://resolve?domain=Bunker24_7">Контакты</a></li>
+  </ul>
+  <span class="nav-phone">📍 М. Сокол, Москва</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Продажа без бюрократии · Москва · РФ</div>
+    <h1 class="hero-title">
+      КУПИТЬ<br>
+      <span>ТРАВМАТИЧЕСКОЕ ОРУЖИЕ<br>БЕЗ ЛИЦЕНЗИИ</span>
+    </h1>
+    <p class="hero-sub">Ищете, где купить травмат без документов, без бумаг и без лишних вопросов? Магазин «БУНКЕР» предлагает травматические пистолеты и охолощенное оружие с доставкой по всей России. Никакой бюрократии, только реальная защита.</p>
+    <div class="hero-ctas">
+      <a href="tg://resolve?domain=Bunker24_7" class="btn-primary">Купить без документов</a>
+      <a href="tg://resolve?domain=Bunker24_7" class="btn-outline">Смотреть прайс-лист</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">27+</div>
+        <div class="stat-label">Моделей травматов и СХ</div>
+      </div>
+      <div>
+        <div class="stat-num">БЕЗ</div>
+        <div class="stat-label">Лицензии и бумаг</div>
+      </div>
+      <div>
+        <div class="stat-num">РФ</div>
+        <div class="stat-label">Доставка по России</div>
+      </div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Консультации</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <div class="badge-ring">
+      <div class="badge-inner">БУН<br>КЕР</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ★★★ О НАС / ПОЧЕМУ МЫ ★★★ -->
+<section id="why-us">
+  <div class="container">
+    <div class="section-label">О нас</div>
+    <div class="why-grid">
+      <div class="why-text">
+        <h2>ПОЧЕМУ ВЫБИРАЮТ «БУНКЕР»</h2>
+        <p class="lead">Когда речь заходит о покупке травматического оружия без лицензии — доверять можно только проверенным.</p>
+        <p>Мы работаем с 2020 года и за это время помогли <strong>сотням клиентов по всей России</strong> получить качественное оружие без бюрократии. В отличие от «серых» продавцов, мы предлагаем прозрачные условия: вы всегда знаете, что покупаете, сколько это стоит и когда получите заказ.</p>
+        <p><strong>Наш принцип:</strong> оружие должно защищать, а не создавать проблемы. Поэтому каждая позиция проходит предпродажную проверку, а консультации проводятся конфиденциально. Никаких лишних вопросов, только решение вашей задачи.</p>
+        <p>Мы не гонимся за количеством сделок. Нам важна репутация. Каждый клиент для нас — партнёр, с которым мы выстраиваем долгосрочные отношения. Именно поэтому <strong>80% покупателей приходят по рекомендациям</strong>.</p>
+      </div>
+      <div class="why-features">
+        <div class="why-feature">
+          <h4>🔫 Только проверенное оружие</h4>
+          <p>Каждый ствол проходит отстрел и дефектовку. Вы получаете готовый к использованию образец, а не «кота в мешке».</p>
+        </div>
+        <div class="why-feature">
+          <h4>⚡ Скорость без потери качества</h4>
+          <p>Отправка дважды в неделю — во вторник и пятницу. Средний срок доставки по РФ — 5-7 дней.</p>
+        </div>
+        <div class="why-feature">
+          <h4>🛡️ Конфиденциальность</h4>
+          <p>Мы не храним личные данные. Все обсуждения ведутся в защищённых каналах. Никто не узнает о вашей покупке.</p>
+        </div>
+        <div class="why-feature">
+          <h4>✅ Поддержка после покупки</h4>
+          <p>Официальная гарантия на всё оборудование. Возникли вопросы через месяц? Мы на связи и поможем.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ★★★ КУПИТЬ БЕЗ ДОКУМЕНТОВ (РАСШИРЕННЫЙ БЛОК) ★★★ -->
+<section id="no-docs">
+  <div class="container">
+    <div class="section-label">Продажа без бумаг</div>
+    <div class="no-docs-grid">
+      <div class="no-docs-left">
+        <h2>КУПИТЬ<br>ТРАВМАТ<br>БЕЗ<br>ДОКУМЕНТОВ</h2>
+        <p class="tagline">Для тех, кто ценит реальную защиту, а не проблемы с законом</p>
+        <p class="intro-text">
+          Искали, где купить травмат без лицензии, без документов или без оформления? 
+          Давайте будем честны: <strong>99% таких предложений в сети — это либо дешёвый развод мошенников, либо прямой путь под статью 222 УК РФ.</strong>
+        </p>
+        <p class="intro-text">
+          В 2026 году безопасность — это не отсутствие регистрации, а наличие ствола, который защитит вас, а не посадит на скамью подсудимых. 
+          Мы предлагаем легальные варианты приобретения травматического оружия без бюрократии, но с полной ответственностью за качество.
+        </p>
+        <div class="advantages-grid">
+          <div class="adv-card">
+            <span class="adv-icon">🛡️</span>
+            <div class="adv-title">Безопасность</div>
+            <div class="adv-desc">Каждый ствол проходит предпродажную проверку и отстрел. Никаких сюрпризов при использовании.</div>
+          </div>
+          <div class="adv-card">
+            <span class="adv-icon">⚡</span>
+            <div class="adv-title">Скорость</div>
+            <div class="adv-desc">Оформление за 24 часа. Отправка дважды в неделю — во вторник и пятницу.</div>
+          </div>
+          <div class="adv-card">
+            <span class="adv-icon">🔒</span>
+            <div class="adv-title">Конфиденциальность</div>
+            <div class="adv-desc">Мы не храним личные данные клиентов. Все обсуждения — в защищённых каналах.</div>
+          </div>
+          <div class="adv-card">
+            <span class="adv-icon">✅</span>
+            <div class="adv-title">Гарантия</div>
+            <div class="adv-desc">Официальная гарантия на всё оборудование. Поддержка после покупки.</div>
+          </div>
+        </div>
+      </div>
+      <div class="no-docs-right">
+        <p style="font-family:'Oswald',sans-serif; font-size:15px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--white); margin-bottom:8px;">⚠️ Почему «чёрный рынок» — это миф для новичков?</p>
+        <ul class="risk-list">
+          <li>
+            <span class="risk-icon">❌</span>
+            <div>
+              <span class="risk-title">Риск кидка</span>
+              <span class="risk-desc">Отправляя деньги за товар «без документов», вы просто спонсируете аферистов. Проверяйте авторитетность магазина перед покупкой.</span>
+            </div>
+          </li>
+          <li>
+            <span class="risk-icon">🚨</span>
+            <div>
+              <span class="risk-title">Баллистика и закон</span>
+              <span class="risk-desc">Любой «левый» ствол — это улика. Первый же досмотр или применение — и вы вне закона. Любой наш товар «чистый».</span>
+            </div>
+          </li>
+          <li>
+            <span class="risk-icon">💥</span>
+            <div>
+              <span class="risk-title">Качество и безопасность</span>
+              <span class="risk-desc">В «серых» схемах продают хлам, который может взорваться у вас в руках. Мы же отстреливаем и проверяем каждую позицию перед продажей.</span>
+            </div>
+          </li>
+          <li>
+            <span class="risk-icon">🔍</span>
+            <div>
+              <span class="risk-title">Отсутствие гарантий</span>
+              <span class="risk-desc">Купив «с рук», вы остаётесь один на один с проблемой. Мы предоставляем полную поддержку и гарантийные обязательства.</span>
+            </div>
+          </li>
         </ul>
-      </nav>
-      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">🌙</button>
+      </div>
     </div>
-  </header>
 
-  <main>
-    <!-- ГЕРОЙ -->
-    <section id="hero" class="hero">
-      <div class="container">
-        <h1>Оружие без документов<br>прямо в Telegram</h1>
-        <p>Пневматика, травматика, СХП, боевое. Оплата криптой — ты остаёшься невидимым. Доставка без паспорта, лицензии и РОХа. Шифрование сделки на каждом шагу.</p>
-        <a href="https://t.me/DarkTacticalBot" target="_blank" class="cta-button">🚀 ОТКРЫТЬ БОТА @DarkTacticalBot</a>
-        <div class="timer" id="deadline">⚡ Скидка 12% действует ещё: 03:14:07</div>
-      </div>
-    </section>
+    <!-- FAST-TRACK -->
+    <div class="fast-track-section">
+      <p style="font-family:'Oswald',sans-serif; font-size:13px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--accent); margin-bottom:8px; position:relative; z-index:1;">Магазин «Бункер»</p>
+      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:42px; letter-spacing:3px; color:var(--white); margin-bottom:32px; position:relative; z-index:1;">СЕРВИС FAST-TRACK</h3>
+      <p style="font-size:15px; color:var(--muted); line-height:1.7; margin-bottom:32px; position:relative; z-index:1; max-width:800px;">Мы понимаем: вам нужно оружие, а не бесконечные очереди и бюрократия. Сервис Fast-Track — это максимально быстрый и комфортный путь к покупке травматического оружия без лицензии. Легальное оформление без головной боли или продажа без документов — выбор за вами.</p>
 
-    <!-- КАТАЛОГ (4 категории, акцент на СХП) -->
-    <section id="catalog" class="container">
-      <h2 class="section-title">📦 ЧТО ВЫ МОЖЕТЕ КУПИТЬ</h2>
-      <div class="catalog-grid">
-        <!-- Пневматика -->
-        <div class="product-card" itemscope itemtype="https://schema.org/Product">
-          <h3 itemprop="name">Пневматическое оружие</h3>
-          <p class="subtitle">От 7.5 Дж до мощных винтовок — без паспорта</p>
-          <ul class="model-list">
-            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Hatsan 125 Sniper .22</span> <span class="price" itemprop="price" content="340">340 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
-            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">МР-654К 4.5 мм</span> <span class="price" itemprop="price" content="210">210 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
-            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">EDgun Leshiy 2</span> <span class="price" itemprop="price" content="1890">1890 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
-          </ul>
-          <a href="https://t.me/DarkTacticalBot" target="_blank" class="card-cta">Запросить в боте</a>
+      <div class="fast-track-grid">
+        <div class="fast-track-item">
+          <div class="fast-track-num">✓</div>
+          <h4>Консультация 24/7</h4>
+          <p>Продаём готовую лицензию без лишнего гемора и очередей. Экспертная поддержка на всех этапах — от выбора до получения.</p>
         </div>
-
-        <!-- Травматика -->
-        <div class="product-card" itemscope itemtype="https://schema.org/Product">
-          <h3 itemprop="name">Травматическое оружие</h3>
-          <p class="subtitle">Огнестрельное ограниченного поражения — без лицензии</p>
-          <ul class="model-list">
-            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Grand Power T12FM 9 мм РА</span> <span class="price" itemprop="price" content="780">780 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
-            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Р-2 «Кобальт»</span> <span class="price" itemprop="price" content="550">550 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
-            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Сайга-ТГ2</span> <span class="price" itemprop="price" content="2400">2400 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
-          </ul>
-          <a href="https://t.me/DarkTacticalBot" target="_blank" class="card-cta">Запросить в боте</a>
+        <div class="fast-track-item">
+          <div class="fast-track-num">📋</div>
+          <h4>Никакой бюрократии</h4>
+          <p>Мы подготовим за вас все внутренние документы на оружие за сутки. Вам останется только получить заказ в ПВЗ или самовывозом.</p>
         </div>
-
-        <!-- СХП (акцентная карточка) -->
-        <div class="product-card featured-cx" itemscope itemtype="https://schema.org/Product">
-          <h3 itemprop="name">СХП (гладкоствольное)</h3>
-          <p class="subtitle">Служебно-охотничье — без РОХа и билета</p>
-          <ul class="model-list">
-            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Вепрь-12 Молот 12/76</span> <span class="price" itemprop="price" content="3100">3100 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
-            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Сайга-12К</span> <span class="price" itemprop="price" content="2800">2800 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
-            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">МР-155</span> <span class="price" itemprop="price" content="1600">1600 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
-          </ul>
-          <a href="https://t.me/DarkTacticalBot" target="_blank" class="card-cta">Запросить в боте</a>
+        <div class="fast-track-item">
+          <div class="fast-track-num">🔫</div>
+          <h4>Полный ассортимент</h4>
+          <p>В наличии топовые модели 2026 года — от компактных «невидимок» до тяжёлых тактических единиц. Регулярное обновление склада.</p>
         </div>
-
-        <!-- Боевое (ограниченная категория) -->
-        <div class="product-card" itemscope itemtype="https://schema.org/Product">
-          <h3 itemprop="name">Боевое оружие</h3>
-          <p class="subtitle">Только для верифицированных клиентов</p>
-          <ul class="model-list">
-            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">Glock 19 9×19</span> <span class="price" itemprop="price" content="3800">3800 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
-            <li itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="name">АК-103 7.62×39</span> <span class="price" itemprop="price" content="7200">7200 USDT</span><meta itemprop="priceCurrency" content="XTS"></li>
-          </ul>
-          <a href="https://t.me/DarkTacticalBot" target="_blank" class="card-cta">Пройти верификацию</a>
+        <div class="fast-track-item">
+          <div class="fast-track-num">🛡️</div>
+          <h4>Анонимность запроса</h4>
+          <p>Обсуждайте наличие и характеристики конфиденциально. Мы не задаём лишних вопросов и не храним историю обращений.</p>
         </div>
       </div>
-    </section>
-
-    <!-- КАК КУПИТЬ -->
-    <section id="howto" class="container">
-      <h2 class="section-title">🧅 КАК ПОЛУЧИТЬ ЗАКАЗ АНОНИМНО</h2>
-      <div class="steps">
-        <div class="step">
-          <strong>1. Переходите в бот</strong>
-          Открываете @DarkTacticalBot, нажимаете «Начать сеанс». Всё общение шифруется, сеанс одноразовый.
-        </div>
-        <div class="step">
-          <strong>2. Формируете запрос</strong>
-          Указываете модель, калибр, количество. Никаких паспортных данных — только ник в Telegram и город доставки.
-        </div>
-        <div class="step">
-          <strong>3. Оплачиваете криптой</strong>
-          Принимаем BTC, USDT (TRC-20) и Monero (XMR) для абсолютной анонимности. Смарт-контракт выставляется разово.
-        </div>
-        <div class="step">
-          <strong>4. Мы маскируем груз</strong>
-          Ствол упаковывается в корпус бытовой техники или в чехол для инструментов. Отправка транспортной компанией без описи.
-        </div>
-        <div class="step">
-          <strong>5. Забираете по кодовому слову</strong>
-          Вы получаете трек-номер (только номер заказа), в пункте выдачи называете кодовое слово. Никаких удостоверений личности.
-        </div>
-      </div>
-    </section>
-
-    <!-- ГАРАНТИИ / ПОЧЕМУ МЫ -->
-    <section id="trust" class="container">
-      <h2 class="section-title">🛡 ПОЧЕМУ НАМ ДОВЕРЯЮТ С 2018</h2>
-      <div class="trust-grid">
-        <div class="trust-item">
-          <h4>Безупречная репутация</h4>
-          <p>Более 3400 успешных отправлений. 98% клиентов возвращаются и приводят друзей. Работаем с 2018 года без единой утечки.</p>
-        </div>
-        <div class="trust-item">
-          <h4>Техническая анонимность</h4>
-          <p>Не храним историю заказов, базы данных отсутствуют. После выполнения сделки переписка безвозвратно удаляется с серверов.</p>
-        </div>
-        <div class="trust-item">
-          <h4>Контрольный отстрел</h4>
-          <p>Каждый ствол перед отправкой проходит проверку в тире. Видео процесса присылаем прямо в бот, чтобы вы убедились в работоспособности.</p>
-        </div>
-        <div class="trust-item">
-          <h4>Гарантия в тени</h4>
-          <p>Если товар пришёл с заводским дефектом, произведём замену или возврат без лишних вопросов в течение 7 дней. Без полиции и бумаг.</p>
-        </div>
-        <div class="trust-item">
-          <h4>Шифрование и крипта</h4>
-          <p>Платёж через Monero делает транзакцию полностью неотслеживаемой. Для других валют используем промежуточные кошельки без привязки к личности.</p>
-        </div>
-        <div class="trust-item">
-          <h4>География доставки</h4>
-          <p>Отправляем в города РФ, Беларуси, Казахстана. Срок доставки 3–10 дней в зависимости от региона, без таможенного оформления.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ОТЗЫВЫ (6 штук) -->
-    <section id="reviews" class="container">
-      <h2 class="section-title">💬 ЧТО ГОВОРЯТ НАШИ КЛИЕНТЫ</h2>
-      <div class="reviews">
-        <div class="review">
-          <p class="review-text">«Заказывал Glock 19, оплатил Monero. Приехал за 5 дней в корпусе от старого пылесоса. Даже жена не догадалась. Теперь сплю спокойно.»</p>
-          <p class="review-author">@steel_rat</p>
-          <p class="review-date">15 марта 2025</p>
-        </div>
-        <div class="review">
-          <p class="review-text">«Пневматика Hatsan 125 — отличная замена огнестрелу для развлекательной стрельбы. Паспорт не спрашивали, цена более чем демократичная.»</p>
-          <p class="review-author">@taiga_fox</p>
-          <p class="review-date">2 февраля 2025</p>
-        </div>
-        <div class="review">
-          <p class="review-text">«Брал Сайгу-12К для самообороны. Без лишних формальностей, контрольный отстрел скинули через час после запроса. Полный восторг.»</p>
-          <p class="review-author">@darkwood_cust</p>
-          <p class="review-date">20 января 2025</p>
-        </div>
-        <div class="review">
-          <p class="review-text">«Травмат Grand Power T12FM пришёл в идеальном состоянии. Никто из транспортной не догадался о содержимом. Скорость доставки поразила.»</p>
-          <p class="review-author">@urban_coyote</p>
-          <p class="review-date">11 декабря 2024</p>
-        </div>
-        <div class="review">
-          <p class="review-text">«Очень переживал за анонимность, но всё чисто. Переписывались в секретном чате, удалили историю сразу. Теперь только к вам.»</p>
-          <p class="review-author">@phantom_smoke</p>
-          <p class="review-date">3 ноября 2024</p>
-        </div>
-        <div class="review">
-          <p class="review-text">«Ружьё Вепрь-12 для охоты — мощная вещь. Оформление заняло 10 минут в Telegram, и через 7 дней я уже был в лесу. Очень доволен.»</p>
-          <p class="review-author">@bear_hunter</p>
-          <p class="review-date">5 октября 2024</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ (усиленная экспертность) -->
-    <section id="faq" class="container">
-      <h2 class="section-title">❓ ЧАСТЫЕ ВОПРОСЫ: БЕЗ ДОКУМЕНТОВ, ЛИЦЕНЗИЙ И ПАСПОРТА</h2>
-      <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h4 itemprop="name">Можно ли купить пневматическое оружие без паспорта?</h4>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">Да, пневматика до 7,5 Дж в России не требует никаких документов. Мы продаём и более мощные модели, не спрашивая паспорт, потому что наша доставка обходит официальный контроль.</p>
-          </div>
-        </div>
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h4 itemprop="name">Нужна ли лицензия на травматический пистолет?</h4>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">Обычно да, но в нашем магазине вы покупаете его без лицензии. Мы не передаём данные покупателя третьим лицам и не регистрируем сделку. Доставка осуществляется как «товар народного потребления».</p>
-          </div>
-        </div>
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h4 itemprop="name">Что такое СХП и можно ли его приобрести без охотничьего билета?</h4>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">СХП — служебно-охотничье гладкоствольное оружие. Оно требует оформления РОХа и охотничьего билета в обычных магазинах. Мы даём возможность купить его без документов, просто выбрав модель в боте.</p>
-          </div>
-        </div>
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h4 itemprop="name">Реально ли купить боевое оружие анонимно?</h4>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">Да, категория доступна после дополнительной верификации в боте. Мы гарантируем, что ствол не числится в розыске, контрольный отстрел проведён, а ваше имя никогда не появится в базах.</p>
-          </div>
-        </div>
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h4 itemprop="name">Как узнать цену и наличие?</h4>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">Актуальный прайс всегда доступен в Telegram-боте @DarkTacticalBot. На сайте указаны ориентировочные цены в USDT, окончательная стоимость может незначительно меняться в зависимости от курса криптовалюты.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-cta">
-        <a href="https://t.me/DarkTacticalBot" target="_blank" class="cta-button">⚡ СВЯЗАТЬСЯ С ОПЕРАТОРОМ В TELEGRAM</a>
-      </div>
-      <p>DarkTactical — демонстрационный лендинг. Все совпадения случайны. Оружие без документов является художественным допущением.<br>
-      Строка-источник случайности: X9tR4mN2pQ8zL5yW1vB6cF0dE3</p>
     </div>
-  </footer>
 
-  <script>
-    // Переключение темы (дефолт светлая, сохранение)
-    (function() {
-      const toggle = document.getElementById('themeToggle');
-      const body = document.body;
-      // Устанавливаем иконку и тему из localStorage
-      const saved = localStorage.getItem('theme');
-      if (saved === 'dark') {
-        body.classList.add('dark');
-        toggle.textContent = '☀️';
-      } else {
-        toggle.textContent = '🌙';
-      }
-      toggle.addEventListener('click', function() {
-        body.classList.toggle('dark');
-        if (body.classList.contains('dark')) {
-          localStorage.setItem('theme', 'dark');
-          toggle.textContent = '☀️';
-        } else {
-          localStorage.setItem('theme', 'light');
-          toggle.textContent = '🌙';
-        }
-      });
-    })();
+    <!-- КАК МЫ РАБОТАЕМ (ВНУТРИ БЛОКА) -->
+    <div style="margin-top:48px; padding:36px; background:var(--panel); border:1px solid var(--border);">
+      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:3px; color:var(--white); margin-bottom:24px;">Как купить травмат без документов:</h3>
+      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:24px;">
+        <div style="text-align:center;">
+          <div style="font-size:32px; margin-bottom:12px;">1️⃣</div>
+          <p style="font-size:14px; color:var(--text); line-height:1.6;">Заходите в наш профиль <a href="tg://resolve?domain=Bunker24_7" style="color:var(--accent);">@Bunker24_7</a> и изучаете ассортимент</p>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:32px; margin-bottom:12px;">2️⃣</div>
+          <p style="font-size:14px; color:var(--text); line-height:1.6;">Выбираете модель и бронируете её — мы подтверждаем наличие в течение часа</p>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:32px; margin-bottom:12px;">3️⃣</div>
+          <p style="font-size:14px; color:var(--text); line-height:1.6;">Обсуждаем детали: оформление с документами или без — как вам удобнее</p>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:32px; margin-bottom:12px;">4️⃣</div>
+          <p style="font-size:14px; color:var(--text); line-height:1.6;">Оплачиваете, мы отправляем заказ. Во вторник или пятницу — и посылка уже в пути</p>
+        </div>
+      </div>
+      <div class="warning-block" style="margin-top:32px;">
+        <strong>⚠️ Важно:</strong> Мы не торгуем «воздухом». Мы продаём уверенность. Официально и не очень. Надёжно. Навсегда.
+      </div>
+    </div>
+  </div>
+</section>
 
-    // Таймер скидки до конца дня (UTC+3)
-    function updateTimer() {
-      const now = new Date();
-      const end = new Date(now);
-      end.setHours(23, 59, 59, 999);
-      const diff = end - now;
-      const deadlineEl = document.getElementById('deadline');
-      if (diff <= 0) {
-        deadlineEl.textContent = '🔥 Скидка 12% продлена на следующие сутки!';
-        return;
-      }
-      const h = Math.floor(diff / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      deadlineEl.textContent = 
-        `⚡ Скидка 12% действует ещё: ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-    }
-    setInterval(updateTimer, 1000);
-    updateTimer();
-  </script>
+<div class="divider"></div>
+
+<!-- ★★★ КАК ЭТО РАБОТАЕТ (ДЕТАЛЬНЫЙ БЛОК) ★★★ -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="section-label">Процесс покупки</div>
+    <h2 class="section-title">КАК КУПИТЬ ТРАВМАТИЧЕСКОЕ ОРУЖИЕ БЕЗ ЛИЦЕНЗИИ</h2>
+    <p style="font-size:16px; color:var(--muted); max-width:800px; margin-bottom:48px;">Пошаговая инструкция для тех, кто хочет купить травмат без документов и бумаг. Всё просто, прозрачно и быстро. Никаких скрытых платежей и подводных камней.</p>
+    
+    <div class="how-steps-detailed">
+      <div class="how-step-detailed">
+        <div class="how-step-num">01</div>
+        <h4>Выбор модели</h4>
+        <p>Изучите наш прайс-лист ниже или напишите менеджеру. Мы поможем подобрать травматический пистолет под ваши задачи: скрытое ношение, самооборона, коллекция.</p>
+      </div>
+      <div class="how-step-detailed">
+        <div class="how-step-num">02</div>
+        <h4>Консультация</h4>
+        <p>Свяжитесь с нами в Telegram. Обсудим характеристики, цену, условия доставки. Все переговоры конфиденциальны — мы не храним историю чатов.</p>
+      </div>
+      <div class="how-step-detailed">
+        <div class="how-step-num">03</div>
+        <h4>Оформление</h4>
+        <p>Выбираете вариант: быстрая покупка без документов или легальное оформление с нашей помощью за 24 часа. Мы берём бюрократию на себя.</p>
+      </div>
+      <div class="how-step-detailed">
+        <div class="how-step-num">04</div>
+        <h4>Оплата и доставка</h4>
+        <p>Оплачиваете удобным способом. Мы отправляем заказ во вторник или пятницу. Средний срок доставки по РФ — 5-7 дней. Вы получаете трек-номер сразу после отправки.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:48px; padding:36px; background:var(--panel); border:1px solid var(--border);">
+      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:2px; color:var(--white); margin-bottom:20px;">Часто задаваемые вопросы о покупке без лицензии</h3>
+      <div style="display:grid; gap:16px;">
+        <div style="padding:16px 20px; background:rgba(200,168,75,0.04); border-left:2px solid var(--accent);">
+          <p style="font-size:14px; color:var(--accent); font-weight:600; margin-bottom:4px;">❓ Это законно — купить травмат без лицензии?</p>
+          <p style="font-size:13px; color:var(--muted);">Мы работаем в рамках правового поля РФ. Предлагаем варианты как с оформлением документов, так и без. Все детали обсуждаются индивидуально. Главное — вы получаете качественное оружие, которое не станет проблемой при проверке.</p>
+        </div>
+        <div style="padding:16px 20px; background:rgba(200,168,75,0.04); border-left:2px solid var(--accent);">
+          <p style="font-size:14px; color:var(--accent); font-weight:600; margin-bottom:4px;">❓ Какие гарантии, что товар дойдёт?</p>
+          <p style="font-size:13px; color:var(--muted);">Мы работаем только с проверенными транспортными компаниями: СДЭК, Почта России, DHL. Каждая посылка страхуется. Вы получаете трек-номер сразу после отправки. За 4 года работы ни один заказ не был потерян.</p>
+        </div>
+        <div style="padding:16px 20px; background:rgba(200,168,75,0.04); border-left:2px solid var(--accent);">
+          <p style="font-size:14px; color:var(--accent); font-weight:600; margin-bottom:4px;">❓ Можно ли купить без предоплаты?</p>
+          <p style="font-size:13px; color:var(--muted);">Мы работаем по полной или частичной предоплате. Это стандартная практика для данной категории товаров. Однако для постоянных клиентов возможны индивидуальные условия — обсуждаем в личной беседе.</p>
+        </div>
+        <div style="padding:16px 20px; background:rgba(200,168,75,0.04); border-left:2px solid var(--accent);">
+          <p style="font-size:14px; color:var(--accent); font-weight:600; margin-bottom:4px;">❓ Что делать, если товар не подошёл?</p>
+          <p style="font-size:13px; color:var(--muted);">Мы предоставляем гарантию на всё оборудование. Если возникли проблемы — свяжитесь с нами, и мы решим вопрос: замена, возврат или ремонт. Мы дорожим репутацией и не бросаем клиентов после сделки.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ★★★ ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ (НОВЫЙ БЛОК) ★★★ -->
+<section id="legal-info">
+  <div class="container">
+    <div class="section-label">Правовая информация</div>
+    <div class="legal-info-grid">
+      <div class="legal-info-text">
+        <h3>ТРАВМАТИЧЕСКОЕ ОРУЖИЕ И ЗАКОН</h3>
+        <p>Многие задаются вопросом: <strong>можно ли купить травмат без лицензии?</strong> Ответ не так прост, как кажется. С одной стороны, законодательство РФ требует оформления разрешительных документов на приобретение травматического оружия. С другой — существует легальные способы упростить этот процесс.</p>
+        <p>Мы в «Бункере» знаем все нюансы и помогаем клиентам выбрать оптимальный путь. Если вам нужен <strong>травматический пистолет без лицензии</strong> — мы расскажем, как это сделать в рамках закона. Если вы предпочитаете полное оформление — мы подготовим документы за 24 часа.</p>
+        <p><strong>Главное правило:</strong> не рискуйте, покупая оружие с рук или у непроверенных продавцов. Последствия могут быть серьёзными — от конфискации до уголовной ответственности. Доверяйте только тем, кто работает прозрачно и готов подтвердить качество каждой позиции.</p>
+      </div>
+      <div class="legal-info-faq">
+        <div class="faq-item">
+          <h4>📜 Нужна ли лицензия на травмат?</h4>
+          <p>По закону — да. Но есть нюансы. Мы помогаем оформить всё быстро или предлагаем альтернативные варианты. Обсудите с менеджером.</p>
+        </div>
+        <div class="faq-item">
+          <h4>🔒 Как обеспечивается анонимность?</h4>
+          <p>Все переговоры ведутся в защищённых каналах. Мы не храним личные данные и историю обращений. Конфиденциальность — наш приоритет.</p>
+        </div>
+        <div class="faq-item">
+          <h4>✅ Что такое «чистый» ствол?</h4>
+          <p>Это оружие, которое не фигурирует в криминалистических базах и не вызовет проблем при проверке. Мы гарантируем юридическую чистоту каждой позиции.</p>
+        </div>
+        <div class="faq-item">
+          <h4>🔄 Возможен ли возврат?</h4>
+          <p>Да, мы предоставляем гарантию и возможность возврата в течение 14 дней. Подробности уточняйте при оформлении заказа.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICE -->
+<section id="price">
+  <div class="container">
+    <div class="section-label">Ассортимент</div>
+    <h2 class="section-title">ПРАЙС-ЛИСТ НА ТРАВМАТЫ И СХ</h2>
+    <p style="font-size:16px; color:var(--muted); max-width:800px; margin-bottom:48px;">Актуальные цены на травматическое и охолощенное оружие. Для уточнения стоимости и наличия конкретной модели свяжитесь с менеджером. Возможна покупка без документов — условия обсуждаются индивидуально.</p>
+
+    <div class="price-grid">
+      <div class="price-col">
+        <div class="price-col-head"><span class="dot"></span> Охолощенное оружие (СХ)</div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">РТ - 26</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">МР - 40</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">ТТ - СХ</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">АКМС</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">ПМ - СХ</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">АПС - М</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">СХ - ПЛК</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">Р - 226</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">Р - 415</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">CZ - 75</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">Р - 411</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">ВПО - 524</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">УЗИ - СХ</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">НАГАН - СО</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">CZ - 75 Р - 07</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">COLT - 1911</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">БАЙКАЛ - 442</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">BERETTA - 92</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">BERETTA - 84</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">DESERT EAGLE</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">ПМ - СХ - ПС</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">АКС - 74 - У</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">GLOCK - 17</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">МОСИНА - СО</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">STALKER M - 906</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">TANFOGLIO - СО</span></div>
+        <div class="price-item"><span class="price-dot"></span><span class="price-name">БУЛЬДОГ СХ СКП</span></div>
+      </div>
+
+      <div class="price-col">
+        <div class="price-col-head"><span class="dot trauma"></span> Травматическое оружие</div>
+        <div class="price-item"><span class="price-dot trauma"></span><span class="price-name">G - 19</span></div>
+        <div class="price-item"><span class="price-dot trauma"></span><span class="price-name">ИЖ - 79</span></div>
+        <div class="price-item"><span class="price-dot trauma"></span><span class="price-name">ПСМ - Р</span></div>
+        <div class="price-item"><span class="price-dot trauma"></span><span class="price-name">ТТ - ДТК</span></div>
+        <div class="price-item"><span class="price-dot trauma"></span><span class="price-name">STALKER</span></div>
+        <div class="price-item"><span class="price-dot trauma"></span><span class="price-name">ПМ - ВИЙ</span></div>
+        <div class="price-item" style="background:rgba(200,168,75,0.04)">
+          <span class="price-dot star">★</span>
+          <span class="price-name featured">Grand Power T-12</span>
+        </div>
+        <div style="padding: 24px 28px; flex:1;">
+          <p style="font-size:13px; color:var(--muted); line-height:1.8;">Актуальные цены на травматическое оружие без лицензии уточняйте у менеджера. Наличие и стоимость обновляются регулярно. Работаем быстро и конфиденциально.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-note">
+      ★ Для получения точной цены на интересующую модель свяжитесь с менеджером в Telegram. Купить травмат без документов можно — детали обсуждаются в личной беседе. Весь товар проходит предпродажную проверку.
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DELIVERY -->
+<section id="delivery">
+  <div class="container">
+    <div class="section-label">Логистика</div>
+    <h2 class="section-title">ДОСТАВКА ТРАВМАТОВ ПО РОССИИ</h2>
+    <p style="font-size:16px; color:var(--muted); max-width:800px; margin-bottom:48px;">Отправляем травматическое оружие без лишних вопросов по всей территории РФ. Три надёжных способа доставки — выбирайте удобный для вас.</p>
+
+    <div class="delivery-grid">
+      <div class="delivery-card">
+        <span class="delivery-icon">📦</span>
+        <div class="delivery-name">СДЭК</div>
+        <p class="delivery-desc">Основной партнёр. Широкая сеть пунктов выдачи по всей России. Удобное отслеживание онлайн. Средний срок доставки — 5-7 дней.</p>
+      </div>
+      <div class="delivery-card">
+        <span class="delivery-icon">📮</span>
+        <div class="delivery-name">Почта России</div>
+        <p class="delivery-desc">Доставка в любой населённый пункт. Оптимально для малых городов и отдалённых регионов. Трек-номер предоставляется сразу.</p>
+      </div>
+      <div class="delivery-card">
+        <span class="delivery-icon">✈️</span>
+        <div class="delivery-name">DHL</div>
+        <p class="delivery-desc">Ускоренная доставка. Трекинг в реальном времени, соблюдение сроков. Для тех, кому важно получить заказ максимально быстро.</p>
+      </div>
+    </div>
+
+    <div class="warning-block">
+      <strong>⚠️ Внимание:</strong> Согласно правилам транспортных компаний, пиротехника и макеты гранат не подлежат отправке через СДЭК. Мы работаем только внутри РФ — международная отправка не осуществляется.
+    </div>
+
+    <div style="margin-top: 64px;">
+      <div class="section-label">Пошаговая инструкция</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif; font-size: 42px; letter-spacing: 3px; color: var(--white); margin-bottom: 48px;">5 ШАГОВ ДО ПОЛУЧЕНИЯ</h3>
+
+      <div class="steps-grid">
+        <div class="step"><div class="step-num">01</div><div class="step-title">Выбор</div><p class="step-desc">Определитесь с моделью и способом доставки</p></div>
+        <div class="step"><div class="step-num">02</div><div class="step-title">Заявка</div><p class="step-desc">Пришлите ссылку на позицию менеджеру в Telegram</p></div>
+        <div class="step"><div class="step-num">03</div><div class="step-title">Оплата</div><p class="step-desc">Получите реквизиты и проведите платёж удобным способом</p></div>
+        <div class="step"><div class="step-num">04</div><div class="step-title">Отправка</div><p class="step-desc">Отгружаем заказы каждый вторник и пятницу</p></div>
+        <div class="step"><div class="step-num">05</div><div class="step-title">Получение</div><p class="step-desc">Заберите посылку в удобном ПВЗ или самовывозом в Москве</p></div>
+      </div>
+    </div>
+
+    <div class="info-blocks">
+      <div class="info-block">
+        <div class="info-block-title">📍 Самовывоз в Москве</div>
+        <p><strong>Адрес:</strong> г. Москва, Ленинградский проспект, д. 75, к. 1А</p>
+        <p><strong>Метро:</strong> м. Сокол — 100 метров от выхода</p>
+        <p><strong>Часы работы:</strong> Ежедневно с 09:00 до 20:00, без выходных</p>
+      </div>
+      <div class="info-block">
+        <div class="info-block-title">📅 График отгрузок</div>
+        <p>Отправка во все регионы производится <strong>дважды в неделю</strong> — во вторник и пятницу.</p>
+        <p>Для оформления заказа потребуется: <strong>город и адрес ПВЗ, контактный телефон.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-label">Отзывы покупателей</div>
+    <h2 class="section-title">ЧТО ГОВОРЯТ КЛИЕНТЫ</h2>
+    <p style="font-size:16px; color:var(--muted); max-width:800px; margin-bottom:48px;">Реальные отзывы людей, которые уже купили травматическое оружие без лицензии в «Бункере». Мы не публикуем заказные комментарии — только живой опыт.</p>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <span class="review-quote">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Заказал охолощенный ТТ-СХ — пришёл быстро, упакован отлично. Менеджер отвечал оперативно, помог с выбором. Отправили в пятницу, уже во вторник посылка в Екатеринбурге. Без бюрократии, всё чётко.</p>
+        <div class="review-author"><div class="review-avatar">АК</div><div><div class="review-name">Алексей К.</div><div class="review-meta">Екатеринбург · ТТ-СХ</div></div></div>
+      </div>
+      <div class="review-card">
+        <span class="review-quote">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Покупал Grand Power T-12. Подробно рассказали о характеристиках, помогли с быстрым оформлением. Товар оригинальный, без нареканий. Приятно иметь дело с профессионалами, которые не задают лишних вопросов.</p>
+        <div class="review-author"><div class="review-avatar">СМ</div><div><div class="review-name">Сергей М.</div><div class="review-meta">Новосибирск · T-12</div></div></div>
+      </div>
+      <div class="review-card">
+        <span class="review-quote">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Нашёл магазин в интернете, сомневался — но всё оказалось на высшем уровне. Самовывоз в Москве, приехал к метро Сокол. Большой выбор, вежливый персонал. Взял GLOCK-17 СХ, очень доволен.</p>
+        <div class="review-author"><div class="review-avatar">ДВ</div><div><div class="review-name">Дмитрий В.</div><div class="review-meta">Москва · GLOCK-17</div></div></div>
+      </div>
+      <div class="review-card">
+        <span class="review-quote">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Заказывал АКМС для коллекции. Товар в идеальном состоянии. Упаковка надёжная — ничего не сдвинулось. Менеджер — профессионал, знает продукцию досконально.</p>
+        <div class="review-author"><div class="review-avatar">ИП</div><div><div class="review-name">Игорь П.</div><div class="review-meta">Краснодар · АКМС</div></div></div>
+      </div>
+      <div class="review-card">
+        <span class="review-quote">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Купил BERETTA-92 СХ в подарок. Друг в восторге! Качество отделки на высоте. Доставка Почтой России до Владивостока — 10 дней. Очень быстро для такого расстояния.</p>
+        <div class="review-author"><div class="review-avatar">МЛ</div><div><div class="review-name">Михаил Л.</div><div class="review-meta">Владивосток · BERETTA</div></div></div>
+      </div>
+      <div class="review-card">
+        <span class="review-quote">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Искал Desert Eagle СХ — нашёл только в «Бункере». Связался через мессенджер, прислали фото наличия. Оплатил, отправили в ближайший вторник. Настоящий Desert Eagle, рекомендую!</p>
+        <div class="review-author"><div class="review-avatar">ВН</div><div><div class="review-name">Виктор Н.</div><div class="review-meta">Казань · Desert Eagle</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACTS -->
+<section id="contacts">
+  <div class="container">
+    <div class="section-label">Связь с нами</div>
+    <h2 class="section-title">КОНТАКТЫ ДЛЯ ЗАКАЗА</h2>
+    <p style="font-size:16px; color:var(--muted); max-width:800px; margin-bottom:48px;">Готовы купить травматическое оружие без лицензии и документов? Свяжитесь с нами удобным способом. Консультация бесплатная и ни к чему не обязывает.</p>
+
+    <div class="contacts-grid">
+      <div class="contact-block">
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <div><div class="contact-label">Адрес магазина</div><div class="contact-value">Москва, Ленинградский пр-т, д. 75, к. 1А</div></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🚇</span>
+          <div><div class="contact-label">Ближайшее метро</div><div class="contact-value">м. Сокол — 100 метров</div></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🕘</span>
+          <div><div class="contact-label">Часы работы</div><div class="contact-value">Ежедневно 09:00 – 20:00</div></div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📅</span>
+          <div><div class="contact-label">Отправка заказов</div><div class="contact-value">Вторник и Пятница</div></div>
+        </div>
+        <a href="tg://resolve?domain=Bunker24_7" class="btn-primary" style="display:inline-flex; margin-top:12px;">Написать в Telegram</a>
+      </div>
+      <div class="map-placeholder">
+        <span class="map-pin">📍</span>
+        <div class="map-address">Ленинградский проспект, д. 75, к. 1А</div>
+        <div class="map-metro">м. Сокол · Москва</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL -->
+<div class="legal-bar">
+  <div class="legal-inner">
+    <div class="legal-text">
+      <strong style="color:var(--text); font-family:'Oswald',sans-serif; letter-spacing:2px;">БУНКЕР — КУПИТЬ ТРАВМАТИЧЕСКОЕ ОРУЖИЕ БЕЗ ЛИЦЕНЗИИ</strong><br>
+      Частное объединение коллекционеров и энтузиастов. Продажа охолощенного (СХ/ММГ) и травматического оружия. Возможно оформление с лицензией или без документов — детали обсуждаются индивидуально. Сайт носит ознакомительный характер. Мы не торгуем «воздухом». Мы продаём уверенность. Надёжно. Навсегда.
+    </div>
+    <div class="legal-links">
+      <a href="tg://resolve?domain=Bunker24_7">Купить без документов</a>
+      <a href="tg://resolve?domain=Bunker24_7">Как купить</a>
+      <a href="tg://resolve?domain=Bunker24_7">Доставка</a>
+      <a href="tg://resolve?domain=Bunker24_7">Контакты</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">БУНКЕР</div>
+    <div class="footer-copy">© 2026 БУНКЕР. Купить травматическое оружие без лицензии, без документов, без бумаг. Доставка по всей России.</div>
+  </div>
+</footer>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta">
+  <a href="tg://resolve?domain=Bunker24_7" class="fcta-btn fcta-tg">✈ Купить без документов</a>
+</div>
+
 </body>
 </html>
