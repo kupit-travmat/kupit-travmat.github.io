@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://kupit-boevoe-travmaticheskoe.github.io/sitemap.xml
+Sitemap: https://kupit-travmat.github.io/sitemap.xml
